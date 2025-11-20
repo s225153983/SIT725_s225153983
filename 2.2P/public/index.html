@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SIT 725 Prac 2.2P</title>
+  <meta name="description" content="SIT 725 Practical 2.2P">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h1 id="heading" class="center-align">SIT 725 2.2P</h1>
+      </div>
+      <div class="col s12 center-align">
+        <a class="waves-effect waves-light btn" onclick="changeText()">Change Text</a>
+      </div>
+    </div>
+
+    <!-- Add two numbers using the server -->
+    <div class="row">
+      <div class="col s12">
+        <h4>Server-side Calculator that allows you to add two numbers:</h4>
+        <div class="row">
+          <div class="input-field col s4">
+            <input id="num1" type="number">
+            <label for="num1">First number</label>
+          </div>
+          <div class="input-field col s4">
+            <input id="num2" type="number">
+            <label for="num2">Second number</label>
+          </div>
+          <div class="col s4" style="margin-top: 25px;">
+            <a class="waves-effect waves-light btn" onclick="addNumbers()">Add to Server</a>
+          </div>
+        </div>
+        <p><strong>Result from server:</strong> <span id="result">–</span></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
