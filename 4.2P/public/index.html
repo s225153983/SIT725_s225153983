@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plant Explorer</title>
+
+  <!-- Materialize CSS -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- Custom CSS (optional) -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-wrapper navbar-size">
+      <a href="#" class="brand-logo">Plant Explorer</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#plants">Plants</a></li>
+        <li><a href="#addPlant">Add Plant</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-body">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 center-align">
+          <h1>Indoor Plant Collection</h1>
+          <p class="flow-text">
+            Browse some easy-care indoor plants and learn how to look after them.
+          </p>
+        </div>
+
+        <!-- Hero image -->
+        <div class="col s12 center-align">
+          <img class="materialboxed materialboxed-image"
+               src="images/plants-hero.jpg" alt="Plants on a shelf" />
+        </div>
+
+        <!-- Button that opens modal -->
+        <div class="col s12 center-align" id="addPlant">
+          <a class="waves-effect waves-light btn click-me-button modal-trigger"
+             data-target="plantModal">
+            <i class="material-icons left">add_circle</i>Add a Plant
+          </a>
+        </div>
+      </div>
+
+      <!-- Card section (filled dynamically) -->
+      <div class="row" id="card-section" aria-label="Plant cards"></div>
+    </div>
+
+    <!-- Modal: plant form -->
+    <div id="plantModal" class="modal modal-fixed-footer">
+      <div class="row modal-content">
+        <!-- give the form an id so JS can hook into it -->
+        <form class="col s12" id="plantForm">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="plant_name" type="text" />
+              <label for="plant_name">Plant name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="plant_image" type="text" />
+              <label for="plant_image">Image URL (e.g. images/monstera.jpg)</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="plant_link" type="text" />
+              <label for="plant_link">Link text (e.g. Care guide)</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="plant_desc" type="text" />
+              <label for="plant_desc">Description / care tip</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12 center-align">
+              <!-- type=submit so form submission triggers JS -->
+              <button type="submit" class="waves-effect waves-light btn" id="formSubmit">
+                Save Plant
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- jQuery + Materialize JS + custom script -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- IMPORTANT: this must point to js/plants.js -->
+  <script src="js/plants.js"></script>
+</body>
+</html>
