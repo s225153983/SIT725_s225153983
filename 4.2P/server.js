@@ -2,7 +2,7 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
-const Plant = require("./models/plant");
+const Plant = require("./models/Plant");
 
 const app = express();
 const port = process.env.PORT || 3000;
