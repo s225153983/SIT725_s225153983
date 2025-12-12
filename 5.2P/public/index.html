@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books Catalog</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; }
+      h1 { margin-bottom: 8px; }
+      #status { margin: 12px 0; color: #444; }
+      ul { padding-left: 18px; }
+      li { margin: 10px 0; }
+      .title { font-weight: 700; }
+      .author { color: #555; }
+    </style>
+  </head>
+  <body>
+    <h1>Books Catalog</h1>
+    <div id="status">Loading books...</div>
+    <ul id="bookList"></ul>
+
+    <script>
+      const statusEl = document.getElementById("status");
+      const listEl = document.getElementById("bookList");
+
+      function renderBooks(books) {
+        listEl.innerHTML = "";
+
+        if (!Array.isArray(books) || books.length === 0) {
+          statusEl.textContent = "No books found.";
+          return;
+        }
+
+        statusEl.textContent = `Loaded ${books.length} books.`;
+
+        for (const b of books) {
+          const li = document.createElement("li");
+          li.innerHTML = `<span class="title">${b.title}</span> — <span class="author">${b.author}</span>`;
+          listEl.appendChild(li);
+        }
+      }
+
+      async function loadBooks() {
+        try {
+          const res = await fetch("/api/books");
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          const body = await res.json();
+          renderBooks(body.data);
+        } catch (err) {
+          console.error(err);
+          statusEl.textContent = "Error loading books. Check console.";
+        }
+      }
+
+      // On load: fetch("/api/books") (required)
+      loadBooks();
+    </script>
+  </body>
+</html>
