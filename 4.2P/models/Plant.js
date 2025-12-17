@@ -1,14 +1,16 @@
-// models/Plant.js
-
 const mongoose = require("mongoose");
 
-// Define the schema for a plant card
-const PlantSchema = new mongoose.Schema({
-  title: { type: String, required: true },         // Plant name
-  image: { type: String, required: false },        // Image path (e.g. "images/monstera.jpg")
-  link: { type: String, required: false },         // Link text (e.g. "Care guide")
-  description: { type: String, required: false },  // Care description / notes
-});
+const PlantSchema = new mongoose.Schema(
+  {
+    commonName: { type: String, required: true },
+    scientificName: { type: String, required: true },
+    sunlight: { type: String, required: true },   // e.g. "Bright indirect"
+    watering: { type: String, required: true },   // e.g. "Weekly"
+    petSafe: { type: Boolean, required: true },   // true/false
+    imagePath: { type: String, required: false }, // e.g. "images/monstera.jpg"
+    careNotes: { type: String, required: false },
+  },
+  { timestamps: true }
+);
 
-// Export the Mongoose model
 module.exports = mongoose.model("Plant", PlantSchema);

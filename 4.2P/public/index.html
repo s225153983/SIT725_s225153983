@@ -5,16 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Plant Explorer</title>
 
-  <!-- Materialize CSS -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-  <!-- Custom CSS (optional) -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <!-- NAVBAR -->
   <nav>
     <div class="nav-wrapper navbar-size">
       <a href="#" class="brand-logo">Plant Explorer</a>
@@ -25,24 +22,21 @@
     </div>
   </nav>
 
-  <!-- MAIN CONTENT -->
-  <main class="main-body">
+  <main class="main-body" id="plants">
     <div class="container">
       <div class="row">
         <div class="col s12 center-align">
           <h1>Indoor Plant Collection</h1>
           <p class="flow-text">
-            Browse some easy-care indoor plants and learn how to look after them.
+            Add plants to your collection and store them in MongoDB.
           </p>
         </div>
 
-        <!-- Hero image -->
         <div class="col s12 center-align">
           <img class="materialboxed materialboxed-image"
                src="images/plants-hero.jpg" alt="Plants on a shelf" />
         </div>
 
-        <!-- Button that opens modal -->
         <div class="col s12 center-align" id="addPlant">
           <a class="waves-effect waves-light btn click-me-button modal-trigger"
              data-target="plantModal">
@@ -51,40 +45,58 @@
         </div>
       </div>
 
-      <!-- Card section (filled dynamically) -->
       <div class="row" id="card-section" aria-label="Plant cards"></div>
     </div>
 
-    <!-- Modal: plant form -->
+    <!-- Modal -->
     <div id="plantModal" class="modal modal-fixed-footer">
       <div class="row modal-content">
-        <!-- give the form an id so JS can hook into it -->
         <form class="col s12" id="plantForm">
           <div class="row">
             <div class="input-field col s6">
-              <input id="plant_name" type="text" />
-              <label for="plant_name">Plant name</label>
+              <input id="commonName" type="text" required />
+              <label for="commonName">Common name</label>
             </div>
             <div class="input-field col s6">
-              <input id="plant_image" type="text" />
-              <label for="plant_image">Image URL (e.g. images/monstera.jpg)</label>
+              <input id="scientificName" type="text" required />
+              <label for="scientificName">Scientific name</label>
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s6">
-              <input id="plant_link" type="text" />
-              <label for="plant_link">Link text (e.g. Care guide)</label>
+              <input id="sunlight" type="text" required />
+              <label for="sunlight">Sunlight (e.g. Bright indirect)</label>
             </div>
             <div class="input-field col s6">
-              <input id="plant_desc" type="text" />
-              <label for="plant_desc">Description / care tip</label>
+              <input id="watering" type="text" required />
+              <label for="watering">Watering (e.g. Weekly)</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="imagePath" type="text" />
+              <label for="imagePath">Image path (e.g. images/monstera.jpg)</label>
+            </div>
+
+            <div class="input-field col s6" style="margin-top: 20px;">
+              <label>
+                <input type="checkbox" id="petSafe" />
+                <span>Pet safe?</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="careNotes" type="text" />
+              <label for="careNotes">Care notes</label>
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s12 center-align">
-              <!-- type=submit so form submission triggers JS -->
               <button type="submit" class="waves-effect waves-light btn" id="formSubmit">
                 Save Plant
               </button>
@@ -95,10 +107,10 @@
     </div>
   </main>
 
-  <!-- jQuery + Materialize JS + custom script -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- IMPORTANT: this must point to js/plants.js -->
+
+  <!-- Use plants.js (keep scripts.js only as optional fallback) -->
   <script src="js/plants.js"></script>
 </body>
 </html>

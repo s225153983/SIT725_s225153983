@@ -1,5 +1,4 @@
 // server.js
-
 const express = require("express");
 const mongoose = require("mongoose");
 const Plant = require("./models/Plant");
@@ -7,57 +6,52 @@ const Plant = require("./models/Plant");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Serve static files from ./public
+// middleware
 app.use(express.static(__dirname + "/public"));
-
-// Parse JSON and URL‑encoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to MongoDB (local DB named plantDB)
+// DB connection
 mongoose
   .connect("mongodb://127.0.0.1:27017/plantDB")
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-  });
+  .then(() => console.log("Connected to MongoDB (plantDB)"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-/**
- * GET /api/plants
- * Returns all plants from the database.
- */
+// GET all plants
 app.get("/api/plants", async (req, res) => {
   try {
-    const plants = await Plant.find({});
+    const plants = await Plant.find({}).sort({ createdAt: -1 });
     res.json({ statusCode: 200, data: plants, message: "Success" });
   } catch (err) {
-    console.error("Error retrieving plants:", err);
-    res
-      .status(500)
-      .json({ statusCode: 500, message: "Error retrieving plants" });
+    console.error("GET /api/plants error:", err);
+    res.status(500).json({ statusCode: 500, message: "Server error" });
   }
 });
 
-/**
- * POST /api/plants
- * Creates a new plant in the database.
- * Expected body fields: title, image, link, description
- */
+// POST create plant
 app.post("/api/plants", async (req, res) => {
   try {
-    const { title, image, link, description } = req.body;
-    const plant = new Plant({ title, image, link, description });
-    const saved = await plant.save();
-    res.status(201).json({ statusCode: 201, data: saved, message: "Saved" });
+    const payload = {
+      commonName: req.body.commonName,
+      scientificName: req.body.scientificName,
+      sunlight: req.body.sunlight,
+      watering: req.body.watering,
+      petSafe:
+        req.body.petSafe === true ||
+        req.body.petSafe === "true" ||
+        req.body.petSafe === "on",
+      imagePath: req.body.imagePath,
+      careNotes: req.body.careNotes,
+    };
+
+    const created = await Plant.create(payload);
+    res.status(201).json({ statusCode: 201, data: created, message: "Created" });
   } catch (err) {
-    console.error("Error saving plant:", err);
-    res.status(500).json({ statusCode: 500, message: "Error saving plant" });
+    console.error("POST /api/plants error:", err);
+    res.status(500).json({ statusCode: 500, message: "Server error" });
   }
 });
 
-// Start server
 app.listen(port, () => {
   console.log("App listening on port " + port);
 });
