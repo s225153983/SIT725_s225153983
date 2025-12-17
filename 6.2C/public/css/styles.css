@@ -1,0 +1,23 @@
+.navbar-size {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.main-body {
+  background-color: #c8e6c9; /* light green */
+  color: #1b5e20;
+  min-height: calc(100vh - 64px);
+}
+
+.materialboxed-image {
+  margin: 20px auto;
+  max-height: 400px;
+}
+
+.click-me-button {
+  margin-top: 40px;
+}
+
+.card-text {
+  text-align: left;
+}

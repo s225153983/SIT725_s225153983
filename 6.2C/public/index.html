@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plant Explorer</title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper navbar-size">
+      <a href="#" class="brand-logo">Plant Explorer</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#plants">Plants</a></li>
+        <li><a href="#addPlant">Add Plant</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-body" id="plants">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 center-align">
+          <h1>Indoor Plant Collection</h1>
+          <p class="flow-text">
+            Add plants to your collection and store them in MongoDB.
+          </p>
+        </div>
+
+        <div class="col s12 center-align">
+          <img class="materialboxed materialboxed-image"
+               src="images/plants-hero.jpg" alt="Plants on a shelf" />
+        </div>
+
+        <div class="col s12 center-align" id="addPlant">
+          <a class="waves-effect waves-light btn click-me-button modal-trigger"
+             data-target="plantModal">
+            <i class="material-icons left">add_circle</i>Add a Plant
+          </a>
+        </div>
+      </div>
+
+      <div class="row" id="card-section" aria-label="Plant cards"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="plantModal" class="modal modal-fixed-footer">
+      <div class="row modal-content">
+        <form class="col s12" id="plantForm">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="commonName" type="text" required />
+              <label for="commonName">Common name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="scientificName" type="text" required />
+              <label for="scientificName">Scientific name</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="sunlight" type="text" required />
+              <label for="sunlight">Sunlight (e.g. Bright indirect)</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="watering" type="text" required />
+              <label for="watering">Watering (e.g. Weekly)</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="imagePath" type="text" />
+              <label for="imagePath">Image path (e.g. images/monstera.jpg)</label>
+            </div>
+
+            <div class="input-field col s6" style="margin-top: 20px;">
+              <label>
+                <input type="checkbox" id="petSafe" />
+                <span>Pet safe?</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="careNotes" type="text" />
+              <label for="careNotes">Care notes</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12 center-align">
+              <button type="submit" class="waves-effect waves-light btn" id="formSubmit">
+                Save Plant
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Use plants.js (keep scripts.js only as optional fallback) -->
+  <script src="js/plants.js"></script>
+</body>
+</html>
